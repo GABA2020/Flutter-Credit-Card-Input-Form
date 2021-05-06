@@ -145,8 +145,6 @@ class InputForm extends StatefulWidget {
 }
 
 class _InputFormState extends State<InputForm> {
-  int? maxLength;
-  TextInputType? textInputType;
   TextEditingController textController = TextEditingController();
 
   String? value;
@@ -202,8 +200,8 @@ class _InputFormState extends State<InputForm> {
                 ),
               ),
             focusNode: widget.focusNode,
-            keyboardType: textInputType,
-            maxLength: maxLength,
+            keyboardType: widget.textInputType,
+            maxLength: widget.maxLength,
             onChanged: (String newValue) {
               if (widget.index == InputState.NUMBER.index) {
                 Provider.of<CardNumberProvider>(context, listen: false)
