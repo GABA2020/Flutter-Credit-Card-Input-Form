@@ -23,6 +23,11 @@ class StateProvider with ChangeNotifier {
     }
   }
 
+  void moveToState(state) {
+    _currentState = state;
+    notifyListeners();
+  }
+
   void moveFirstState() {
     _currentState = _states[0];
     notifyListeners();

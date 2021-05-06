@@ -139,8 +139,6 @@ class CreditCardInputImpl extends StatefulWidget {
 }
 
 class _CreditCardInputImplState extends State<CreditCardInputImpl> {
-  PageController? pageController;
-
   final GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
 
   final cardHorizontalpadding = 12;
@@ -153,37 +151,28 @@ class _CreditCardInputImplState extends State<CreditCardInputImpl> {
     super.initState();
 
     _currentState = widget.initialCardState;
-
-    pageController = PageController(
-      viewportFraction: 0.92,
-      initialPage: widget.initialCardState!.index,
-    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final newState = Provider.of<StateProvider>(context).getCurrentState();
+    // final newState = Provider.of<StateProvider>(context).getCurrentState();
 
     final name = Provider.of<CardNameProvider>(context).cardName;
-
     final cardNumber = Provider.of<CardNumberProvider>(context).cardNumber;
-
     final valid = Provider.of<CardValidProvider>(context).cardValid;
-
     final cvv = Provider.of<CardCVVProvider>(context).cardCVV;
-
     final captions = Provider.of<Captions>(context);
 
-    if (newState != _currentState) {
-      _currentState = newState;
+    // if (newState != _currentState) {
+    //   _currentState = newState;
 
-      Future(() {
-        widget.onCardModelChanged!(
-            _currentState,
-            CardInfo(
-                name: name, cardNumber: cardNumber, validate: valid, cvv: cvv));
-      });
-    }
+    //   Future(() {
+    //     widget.onCardModelChanged!(
+    //         _currentState,
+    //         CardInfo(
+    //             name: name, cardNumber: cardNumber, validate: valid, cvv: cvv));
+    //   });
+    // }
 
     double cardWidth =
         MediaQuery.of(context).size.width - (2 * cardHorizontalpadding);
@@ -216,109 +205,29 @@ class _CreditCardInputImplState extends State<CreditCardInputImpl> {
             back: BackCardView(height: cardHeight, decoration: backDecoration),
           ),
         ),
-        Stack(
-          children: [
-            AnimatedOpacity(
-              opacity: _currentState == InputState.DONE ? 0 : 1,
-              duration: Duration(milliseconds: 500),
-              child: InputViewPager(
-                isAutoFoucus: widget.initialAutoFocus,
-                pageController: pageController,
-              ),
+        InputViewPager(cardKey: cardKey),
+        Align(
+          alignment: Alignment.centerRight,
+          child: Padding(
+            padding: EdgeInsets.only(right: 24),
+            child: RoundButton(
+              decoration: widget.nextButtonDecoration,
+              textStyle: widget.nextButtonTextStyle,
+              buttonTitle: captions.getCaption('NEXT'),
+              onTap: () {
+                widget.onCardModelChanged!(
+                  _currentState,
+                  CardInfo(
+                    name: name,
+                    cardNumber: cardNumber,
+                    validate: valid,
+                    cvv: cvv,
+                  ),
+                );
+              },
             ),
-            Align(
-                alignment: Alignment.center,
-                child: AnimatedOpacity(
-                    opacity: widget.showResetButton! &&
-                            _currentState == InputState.DONE
-                        ? 1
-                        : 0,
-                    duration: Duration(milliseconds: 500),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ResetButton(
-                        decoration: widget.resetButtonDecoration,
-                        textStyle: widget.resetButtonTextStyle,
-                        onTap: () {
-                          if (!widget.showResetButton!) {
-                            return;
-                          }
-
-                          Provider.of<StateProvider>(context, listen: false)
-                              .moveFirstState();
-                          pageController!.animateToPage(0,
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.easeIn);
-
-                          if (!cardKey.currentState!.isFront) {
-                            cardKey.currentState!.toggleCard();
-                          }
-                        },
-                      ),
-                    ))),
-          ],
+          ),
         ),
-        Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
-          AnimatedOpacity(
-            opacity: _currentState == InputState.NUMBER ||
-                    _currentState == InputState.DONE
-                ? 0
-                : 1,
-            duration: Duration(milliseconds: 500),
-            child: RoundButton(
-                decoration: widget.prevButtonDecoration,
-                textStyle: widget.prevButtonTextStyle,
-                buttonTitle: captions.getCaption('PREV'),
-                onTap: () {
-                  if (InputState.DONE == _currentState) {
-                    return;
-                  }
-
-                  if (InputState.NUMBER != _currentState) {
-                    pageController!.previousPage(
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  }
-
-                  if (InputState.CVV == _currentState) {
-                    cardKey.currentState!.toggleCard();
-                  }
-                  Provider.of<StateProvider>(context, listen: false)
-                      .movePrevState();
-                }),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          AnimatedOpacity(
-            opacity: _currentState == InputState.DONE ? 0 : 1,
-            duration: Duration(milliseconds: 500),
-            child: RoundButton(
-                decoration: widget.nextButtonDecoration,
-                textStyle: widget.nextButtonTextStyle,
-                buttonTitle: _currentState == InputState.CVV ||
-                        _currentState == InputState.DONE
-                    ? captions.getCaption('DONE')
-                    : captions.getCaption('NEXT'),
-                onTap: () {
-                  if (InputState.CVV != _currentState) {
-                    pageController!.nextPage(
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  }
-
-                  if (InputState.VALIDATE == _currentState) {
-                    cardKey.currentState!.toggleCard();
-                  }
-
-                  Provider.of<StateProvider>(context, listen: false)
-                      .moveNextState();
-                }),
-          ),
-          SizedBox(
-            width: 25,
-          )
-        ])
       ],
     );
   }
