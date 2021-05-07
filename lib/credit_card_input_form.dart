@@ -33,6 +33,7 @@ class CreditCardInputForm extends StatelessWidget {
       this.cardName = '',
       this.cardCVV = '',
       this.cardValid = '',
+      this.loading = false,
       this.initialAutoFocus = true,
       this.intialCardState = InputState.NUMBER,
       this.nextButtonTextStyle = kDefaultButtonTextStyle,
@@ -59,6 +60,7 @@ class CreditCardInputForm extends StatelessWidget {
   final String cardCVV;
   final String cardValid;
   final initialAutoFocus;
+  final bool loading;
   final InputState intialCardState;
 
   @override
@@ -99,6 +101,7 @@ class CreditCardInputForm extends StatelessWidget {
         nextButtonTextStyle: nextButtonTextStyle,
         resetButtonTextStyle: resetButtonTextStyle,
         initialCardState: intialCardState,
+        loading: loading,
       ),
     );
   }
@@ -117,6 +120,7 @@ class CreditCardInputImpl extends StatefulWidget {
   final TextStyle? prevButtonTextStyle;
   final TextStyle? resetButtonTextStyle;
   final InputState? initialCardState;
+  final bool? loading;
   final initialAutoFocus;
 
   CreditCardInputImpl(
@@ -132,6 +136,7 @@ class CreditCardInputImpl extends StatefulWidget {
       this.prevButtonDecoration,
       this.initialCardState,
       this.initialAutoFocus,
+      this.loading,
       this.resetButtonDecoration});
 
   @override
@@ -208,23 +213,35 @@ class _CreditCardInputImplState extends State<CreditCardInputImpl> {
         InputViewPager(cardKey: cardKey),
         Align(
           alignment: Alignment.centerRight,
-          child: Padding(
-            padding: EdgeInsets.only(right: 24),
-            child: RoundButton(
-              decoration: widget.nextButtonDecoration,
-              textStyle: widget.nextButtonTextStyle,
-              buttonTitle: captions.getCaption('NEXT'),
-              onTap: () {
-                widget.onCardModelChanged!(
-                  _currentState,
-                  CardInfo(
-                    name: name,
-                    cardNumber: cardNumber,
-                    validate: valid,
-                    cvv: cvv,
-                  ),
-                );
-              },
+          child: SizedBox(
+            width: 120,
+            height: 50,
+            child: Padding(
+              padding: EdgeInsets.only(right: 24),
+              child: MaterialButton(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                color: Color.fromRGBO(244, 198, 119, 1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                onPressed: () => {
+                  widget.onCardModelChanged!(
+                    _currentState,
+                    CardInfo(
+                      name: name,
+                      cardNumber: cardNumber,
+                      validate: valid,
+                      cvv: cvv,
+                    ),
+                  )
+                },
+                child: widget.loading!
+                    ? CircularProgressIndicator()
+                    : Text(
+                        captions.getCaption('NEXT')!,
+                        style: TextStyle(color: Colors.white),
+                      ),
+              ),
             ),
           ),
         ),
