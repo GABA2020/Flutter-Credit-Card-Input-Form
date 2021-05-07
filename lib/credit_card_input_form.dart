@@ -237,8 +237,8 @@ class _CreditCardInputImplState extends State<CreditCardInputImpl> {
                 },
                 child: widget.loading!
                     ? SizedBox(
-                        width: 30,
-                        height: 30,
+                        width: 25,
+                        height: 25,
                         child: CircularProgressIndicator(),
                       )
                     : Text(
