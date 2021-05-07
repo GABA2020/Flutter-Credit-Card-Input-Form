@@ -214,8 +214,8 @@ class _CreditCardInputImplState extends State<CreditCardInputImpl> {
         Align(
           alignment: Alignment.centerRight,
           child: SizedBox(
-            width: 120,
-            height: 50,
+            width: 140,
+            height: 40,
             child: Padding(
               padding: EdgeInsets.only(right: 24),
               child: MaterialButton(
@@ -236,7 +236,11 @@ class _CreditCardInputImplState extends State<CreditCardInputImpl> {
                   )
                 },
                 child: widget.loading!
-                    ? CircularProgressIndicator()
+                    ? SizedBox(
+                        width: 30,
+                        height: 30,
+                        child: CircularProgressIndicator(),
+                      )
                     : Text(
                         captions.getCaption('NEXT')!,
                         style: TextStyle(color: Colors.white),
