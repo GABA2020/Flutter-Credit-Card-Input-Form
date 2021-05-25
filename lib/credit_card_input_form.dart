@@ -211,42 +211,41 @@ class _CreditCardInputImplState extends State<CreditCardInputImpl> {
           ),
         ),
         InputViewPager(cardKey: cardKey),
-        Align(
-          alignment: Alignment.centerRight,
-          child: SizedBox(
-            width: 140,
-            height: 40,
-            child: Padding(
-              padding: EdgeInsets.only(right: 24),
-              child: MaterialButton(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                color: Color.fromRGBO(244, 198, 119, 1),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                onPressed: () => {
-                  widget.onCardModelChanged!(
-                    _currentState,
-                    CardInfo(
-                      name: name,
-                      cardNumber: cardNumber,
-                      validate: valid,
-                      cvv: cvv,
-                    ),
-                  )
-                },
-                child: widget.loading!
-                    ? SizedBox(
-                        width: 25,
-                        height: 25,
-                        child: CircularProgressIndicator(),
-                      )
-                    : Text(
-                        captions.getCaption('NEXT')!,
-                        style: TextStyle(color: Colors.white),
-                      ),
-              ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(12, 40, 12, 12),
+          child: MaterialButton(
+            height: 50,
+            padding: EdgeInsets.symmetric(vertical: 16),
+            color: Color(0xFF3D499D),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(6),
             ),
+            onPressed: () => {
+              widget.onCardModelChanged!(
+                _currentState,
+                CardInfo(
+                  name: name,
+                  cardNumber: cardNumber,
+                  validate: valid,
+                  cvv: cvv,
+                ),
+              )
+            },
+            child: widget.loading!
+                ? SizedBox(
+                    width: 25,
+                    height: 25,
+                    child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation(Colors.white)),
+                  )
+                : Text(
+                    captions.getCaption('NEXT')!,
+                    style: Theme.of(context).textTheme.headline1!.copyWith(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                  ),
           ),
         ),
       ],

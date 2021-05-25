@@ -16,15 +16,15 @@ class CardName extends StatelessWidget {
       name.isNotEmpty ? name : defaultName,
       style: name.isNotEmpty
           ? Theme.of(context).textTheme.headline1!.copyWith(
-                color: Colors.white,
-                fontSize: 14,
-                letterSpacing: 1,
-              )
+              color: Colors.white,
+              fontSize: 14,
+              letterSpacing: 1,
+              fontWeight: FontWeight.w500)
           : Theme.of(context).textTheme.headline1!.copyWith(
-                color: Colors.white70,
-                fontSize: 14,
-                letterSpacing: 1,
-              ),
+              color: Colors.white70,
+              fontSize: 14,
+              letterSpacing: 1,
+              fontWeight: FontWeight.w500),
     );
   }
 }

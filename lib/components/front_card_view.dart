@@ -79,10 +79,10 @@ class FrontCardView extends StatelessWidget {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 4),
-                        child: Image(
-                          image: AssetImage('images/gaba-healt-icon.png'),
+                        child: Image.asset(
+                          'images/gaba-healt-icon.png',
                           width: 45,
-                          height: 35,
+                          package: 'credit_card_input_form',
                         ),
                       ),
                     ],
@@ -106,7 +106,10 @@ class FrontCardView extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .headline1!
-                              .copyWith(color: Colors.white, fontSize: 12),
+                              .copyWith(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600),
                         ),
                         SizedBox(
                           height: 8,
@@ -129,7 +132,10 @@ class FrontCardView extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .headline1!
-                              .copyWith(color: Colors.white, fontSize: 12),
+                              .copyWith(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600),
                         ),
                         SizedBox(
                           height: 8,

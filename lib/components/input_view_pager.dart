@@ -72,7 +72,7 @@ class _InputViewPagerState extends State<InputViewPager> {
 
     return Container(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
         child: Column(
           children: [
             InputForm(
@@ -184,10 +184,14 @@ class _InputFormState extends State<InputForm> {
         children: <Widget>[
           Text(
             widget.title!,
-            style: TextStyle(fontSize: 14, color: Colors.black38),
+            style: Theme.of(context).textTheme.headline1!.copyWith(
+                  color: Color(0xFF848D96),
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           SizedBox(
-            height: 5,
+            height: 8,
           ),
           TextField(
             autocorrect: false,
@@ -217,19 +221,24 @@ class _InputFormState extends State<InputForm> {
                     .setCVV(newValue);
               }
             },
+            style: Theme.of(context).textTheme.headline1!.copyWith(
+                  color: Color(0xFF333333),
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                ),
             decoration: InputDecoration(
               isDense: true,
               counter: SizedBox(
                 height: 0,
               ),
               contentPadding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+                  const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
               border: OutlineInputBorder(
-                  borderSide: BorderSide(width: 1, color: Colors.grey),
-                  borderRadius: BorderRadius.circular(5)),
+                  borderSide: BorderSide(width: 1, color: Color(0xFF848D96)),
+                  borderRadius: BorderRadius.circular(8)),
               focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 1, color: Colors.blue),
-                  borderRadius: BorderRadius.circular(5)),
+                  borderSide: BorderSide(width: 1, color: Color(0xFF3D499D)),
+                  borderRadius: BorderRadius.circular(8)),
             ),
           )
         ],

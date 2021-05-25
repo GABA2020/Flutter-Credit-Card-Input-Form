@@ -2,7 +2,6 @@ import 'package:credit_card_input_form/constants/captions.dart';
 import 'package:flutter/material.dart';
 import 'package:credit_card_input_form/provider/card_valid_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:credit_card_input_form/constants/constanst.dart';
 
 class CardValid extends StatelessWidget {
   @override
@@ -36,18 +35,18 @@ class CardValid extends StatelessWidget {
         Text(
           inputCardValid,
           style: Theme.of(context).textTheme.headline1!.copyWith(
-                color: Colors.white,
-                fontSize: 15,
-                letterSpacing: 3,
-              ),
+              color: Colors.white,
+              fontSize: 15,
+              letterSpacing: 3,
+              fontWeight: FontWeight.w500),
         ),
         Text(
           defaultCardValid,
           style: Theme.of(context).textTheme.headline1!.copyWith(
-                color: Colors.white70,
-                fontSize: 15,
-                letterSpacing: 1,
-              ),
+              color: Colors.white70,
+              fontSize: 15,
+              letterSpacing: 1,
+              fontWeight: FontWeight.w500),
         )
       ],
     ));
