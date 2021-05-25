@@ -20,7 +20,8 @@ final discover = Image.asset('images/discover.png',
 final amex = Image.asset('images/amex.png',
     width: 50, package: 'credit_card_input_form');
 
-final others = Container();
+final others = Image.asset('images/others.png',
+    width: 50, package: 'credit_card_input_form');
 
 final Map<CardCompany, Set<List<String>>> cardNumPatterns =
     <CardCompany, Set<List<String>>>{

@@ -10,7 +10,7 @@ final kCardNumberTextStyle = TextStyle(
 );
 
 final kCardDefaultTextStyle = TextStyle(
-  color: Colors.grey,
+  color: Colors.white,
   fontFamily: 'U and I',
   package: 'credit_card_input_form',
   fontSize: 25,
@@ -26,7 +26,7 @@ final kCVCTextStyle = TextStyle(
 );
 
 final kTextStyle = TextStyle(
-  fontSize: 8,
+  fontSize: 12,
   fontWeight: FontWeight.bold,
   color: Colors.white,
   fontFamily: 'U and I',
@@ -108,11 +108,13 @@ const defaultResetButtonDecoration = BoxDecoration(
 );
 
 const defaultCardDecoration = BoxDecoration(
-    boxShadow: <BoxShadow>[
-      BoxShadow(color: Colors.black54, blurRadius: 15.0, offset: Offset(0, 8))
-    ],
-    color: Color(0xFF5D5D5E),
-    borderRadius: BorderRadius.all(Radius.circular(15)));
+  shape: BoxShape.rectangle,
+  borderRadius: BorderRadius.all(Radius.circular(15)),
+  gradient: LinearGradient(colors: [
+    Color(0xFF131313),
+    Color(0xFF565656),
+  ], begin: Alignment.centerLeft, end: Alignment.centerRight),
+);
 
 enum InputState { NUMBER, NAME, VALIDATE, CVV, DONE }
 

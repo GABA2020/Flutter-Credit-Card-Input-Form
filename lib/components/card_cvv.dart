@@ -11,13 +11,25 @@ class CardCVV extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(3.0),
           child: Container(
-            height: 40,
+            height: 50,
             width: 70,
-            color: Colors.white,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
             child: Center(
               child: Text(
-                value.cardCVV,
-                style: kCVCTextStyle,
+                value.cardCVV != '' ? value.cardCVV : 'CVC',
+                style: value.cardCVV != ''
+                    ? Theme.of(context)
+                        .textTheme
+                        .headline1!
+                        .copyWith(color: Colors.black, fontSize: 18)
+                    : Theme.of(context)
+                        .textTheme
+                        .headline1!
+                        .copyWith(color: Colors.grey, fontSize: 18),
               ),
             ),
           ),

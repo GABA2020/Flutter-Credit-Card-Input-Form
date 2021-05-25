@@ -35,11 +35,19 @@ class CardValid extends StatelessWidget {
       children: <Widget>[
         Text(
           inputCardValid,
-          style: kValidtextStyle,
+          style: Theme.of(context).textTheme.headline1!.copyWith(
+                color: Colors.white,
+                fontSize: 15,
+                letterSpacing: 3,
+              ),
         ),
         Text(
           defaultCardValid,
-          style: kDefaultValidTextStyle,
+          style: Theme.of(context).textTheme.headline1!.copyWith(
+                color: Colors.white70,
+                fontSize: 15,
+                letterSpacing: 1,
+              ),
         )
       ],
     ));

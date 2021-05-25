@@ -22,6 +22,26 @@ class BackCardView extends StatelessWidget {
       decoration: decoration,
       child: Stack(
         children: <Widget>[
+          Positioned(
+            top: -100,
+            right: -70,
+            child: Container(
+              width: 270,
+              height: 270,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle, color: Color(0x22FFFFFF)),
+            ),
+          ),
+          Positioned(
+            top: -110,
+            left: -55,
+            child: Container(
+              width: 300,
+              height: 300,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle, color: Color(0x0aFFFFFF)),
+            ),
+          ),
           Container(
             margin: EdgeInsets.only(top: 25),
             height: 35,
@@ -36,7 +56,7 @@ class BackCardView extends StatelessWidget {
                 child: Container(
                   margin: EdgeInsets.only(right: 30),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7.5),
+                    borderRadius: BorderRadius.circular(10),
                     border: Border.all(
                       color:
                           Colors.yellow, //                   <--- border color
@@ -44,7 +64,7 @@ class BackCardView extends StatelessWidget {
                     ),
                   ),
                   child: Container(
-                    height: 45,
+                    height: 55,
                     width: 75,
                   ),
                 )),

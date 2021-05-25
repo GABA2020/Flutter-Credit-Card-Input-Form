@@ -88,11 +88,26 @@ class YellowBorder extends StatelessWidget {
         if (name.isEmpty) {
           name = 'NAME SURNAME';
         }
-        width = textSize(name.toUpperCase(), kNametextStyle).width + 10;
+        width = textSize(
+              name.toUpperCase(),
+              Theme.of(context).textTheme.headline1!.copyWith(
+                    color: Colors.white70,
+                    fontSize: 14,
+                    letterSpacing: 1,
+                  ),
+            ).width +
+            10;
         break;
       case InputState.CVV:
       case InputState.VALIDATE:
-        width = textSize('MM/YY', kNametextStyle).width + 10;
+        width = textSize(
+              'MM/YY',
+              Theme.of(context).textTheme.headline1!.copyWith(
+                    fontSize: 15,
+                    letterSpacing: 1,
+                  ),
+            ).width +
+            10;
         break;
     }
     return width;

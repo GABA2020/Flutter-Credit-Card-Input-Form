@@ -14,6 +14,11 @@ class CardLogo extends StatelessWidget {
     return Stack(
       children: <Widget>[
         AnimatedOpacity(
+          opacity: cardCompany == CardCompany.OTHER ? 1 : 0,
+          child: others,
+          duration: Duration(milliseconds: 200),
+        ),
+        AnimatedOpacity(
           opacity: cardCompany == CardCompany.VISA ? 1 : 0,
           child: visa,
           duration: Duration(milliseconds: 200),
