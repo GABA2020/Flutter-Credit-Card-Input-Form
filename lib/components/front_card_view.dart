@@ -62,7 +62,7 @@ class FrontCardView extends StatelessWidget {
                             child: Image.asset(
                               'images/logo.png',
                               height: 24,
-                              // package: 'credit_card_input_form',
+                              package: 'credit_card_input_form',
                             ),
                           ),
                           Text(
@@ -81,7 +81,7 @@ class FrontCardView extends StatelessWidget {
                         child: Image.asset(
                           'images/gaba-healt-icon.png',
                           width: 40,
-                          // package: 'credit_card_input_form',
+                          package: 'credit_card_input_form',
                         ),
                       ),
                     ],
