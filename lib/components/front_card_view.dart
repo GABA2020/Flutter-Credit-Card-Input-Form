@@ -54,35 +54,34 @@ class FrontCardView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      RichText(
-                        text: TextSpan(
-                          style: Theme.of(context).textTheme.headline2!,
-                          children: [
-                            TextSpan(
-                              text: 'GABA',
-                              style: TextStyle(
-                                color: Color(0xFFF4C677),
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 2),
+                            child: Image.asset(
+                              'images/logo.png',
+                              height: 24,
+                              // package: 'credit_card_input_form',
                             ),
-                            TextSpan(
-                              text: ' Black',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                          Text(
+                            '  Black',
+                            style:
+                                Theme.of(context).textTheme.headline2!.copyWith(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                          ),
+                        ],
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 4),
+                        padding: EdgeInsets.symmetric(vertical: 9),
                         child: Image.asset(
                           'images/gaba-healt-icon.png',
-                          width: 45,
-                          package: 'credit_card_input_form',
+                          width: 40,
+                          // package: 'credit_card_input_form',
                         ),
                       ),
                     ],
