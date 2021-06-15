@@ -1,3 +1,4 @@
+import 'package:credit_card_input_form/provider/card_last_four_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:credit_card_input_form/provider/card_number_provider.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,8 @@ class CardNumber extends StatelessWidget {
   Widget build(BuildContext context) {
     String cardNumber =
         Provider.of<CardNumberProvider>(context, listen: true).cardNumber;
+    String lastFour =
+        Provider.of<CardLastFourProvider>(context, listen: true).cardLastFour;
     String defaultNumber = '';
 
     final numberLength = cardNumber.replaceAll(" ", "").length;
@@ -27,14 +30,21 @@ class CardNumber extends StatelessWidget {
           fit: BoxFit.scaleDown,
           child: Row(
             children: <Widget>[
-              Text(
-                cardNumber,
-                style: kCardNumberTextStyle,
-              ),
-              Text(
-                defaultNumber,
-                style: kCardDefaultTextStyle,
-              )
+              if (lastFour.length == 4)
+                Text(
+                  'XXXX XXXX XXXX ' + lastFour,
+                  style: kCardNumberTextStyle,
+                )
+              else ...[
+                Text(
+                  cardNumber,
+                  style: kCardNumberTextStyle,
+                ),
+                Text(
+                  defaultNumber,
+                  style: kCardDefaultTextStyle,
+                )
+              ],
             ],
           ),
         ),
